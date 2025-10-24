@@ -16,9 +16,9 @@ jobs:
         steps:
             - uses: actions/checkout@v4
 
-            # - name: Abhängigkeiten installieren
-            #   run: npm install
-            #   working-directory: ./.github/actions/custom-action-js
+            - name: Abhängigkeiten installieren
+              run: npm install
+              working-directory: ./.github/actions/custom-action-js
 
             - name: Action ausführen
               id: action-call
