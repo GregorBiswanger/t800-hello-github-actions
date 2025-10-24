@@ -10,8 +10,13 @@ jobs:
     Analysis:
         name: Erste Analyse
         runs-on: ubuntu-latest
+        env:
+            GEHEIM: ${{ secrets.MY_SECRET }}
 
         steps:
+            - name: Zeige unser Geheimnis
+              run: echo $GEHEIM
+
             - name: Zeige GitHub Kontext
               run: echo '${{ toJson(github) }}'
 
