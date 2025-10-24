@@ -19,3 +19,6 @@ jobs:
               
             - name: Aktuelles Verzeichnis ansehen
               run: pwd && ls -al
+
+            - name: Nodejs ausführen
+              run: node hello-world.js
