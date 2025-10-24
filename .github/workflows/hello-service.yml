@@ -10,15 +10,15 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
-      hello-service:
-        image: alpine:latest
-        ports:
-          - 8080:80
-        options: >-
-          --health-cmd "wget -qO- - http://localhost:80 || exit 1"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        hello-service:
+            image: nginx:alpine
+            ports:
+            - 8080:80
+            options: >-
+                --health-cmd "wget -qO- - http://localhost:80 || exit 1"
+                --health-interval 10s
+                --health-timeout 5s
+                --health-retries 5
 
     steps:
       - name: Check out Code
