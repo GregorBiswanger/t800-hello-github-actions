@@ -1,0 +1,37 @@
+name: CI mit Service-Container
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      hello-service:
+        image: alpine:latest
+        ports:
+          - 8080:80
+        options: >-
+          --health-cmd "wget -qO- - http://localhost:80 || exit 1"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Check out Code
+        uses: actions/checkout@v4
+
+      - name: Start a mini web-server inside the service
+        run: |
+          # hier wird angenommen, dass im Container irgendwas bei Port 80 läuft
+          echo "Hello World from service!" > index.html
+          # z. B. mit busybox httpd starten
+          docker exec ${{ job.services.hello-service.id }} sh -c "busybox httpd -f -p 80 &"
+
+      - name: Test service is reachable
+        run: |
+          # Wenn Job **nicht** in eigener Containerumgebung läuft: Zugriff via localhost:8080
+          curl http://localhost:8080 | grep "Hello World from service!"
