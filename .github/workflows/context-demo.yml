@@ -12,6 +12,7 @@ jobs:
         runs-on: ubuntu-latest
         env:
             GEHEIM: ${{ secrets.MY_SECRET }}
+        environment: Production
 
         steps:
             - name: Zeige unser Geheimnis
