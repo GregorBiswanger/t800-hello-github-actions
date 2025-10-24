@@ -3,7 +3,7 @@ name: Hello World
 description: Das ist nur ein Hello World Beispiel
 env:
   GLOBAL_MESSAGE: "Hallo aus dem Workflow"
-
+  
 # Events
 on: 
     push:
