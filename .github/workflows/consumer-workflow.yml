@@ -1,0 +1,11 @@
+name: Workflow, der einen anderen verwendet
+
+on:
+    push:
+    workflow_dispatch:
+
+jobs:
+    call-reusable-workflow:
+        uses: ./.github/workflows/reusable-workflow.yml # uses: mein-org/mein-action-repo@v1
+        with:
+            name: "Gregor"
