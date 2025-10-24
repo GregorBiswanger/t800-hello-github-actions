@@ -17,6 +17,14 @@ jobs:
             - name: Zeige unser Geheimnis
               run: echo $GEHEIM
 
+            - name: Secret auf Datev prüfen
+              if: env.GEHEIM == 'I love Datev'
+              run: echo "Viel liebe für Datev"
+
+            - name: Secret auf Datev production prüfen
+              if: env.GEHEIM == 'I love really Datev'
+              run: echo "Viel liebe für Datev (Production Version)"
+
             - name: Zeige GitHub Kontext
               run: echo '${{ toJson(github) }}'
 
