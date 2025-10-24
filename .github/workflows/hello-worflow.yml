@@ -1,6 +1,8 @@
 # Workflow konfiguration
 name: Hello World
 description: Das ist nur ein Hello World Beispiel
+env:
+  GLOBAL_MESSAGE: "Hallo aus dem Workflow"
 
 # Events
 on: 
@@ -15,8 +17,15 @@ on:
 jobs:
     say-hello:
         runs-on: ubuntu-latest
+        env:
+            JOB_MESSAGE: "Hallo aus dem Job"
 
         steps:
+            - name: Ausgabe global und Job
+              run: |
+                echo "GLOBAL_MESSAGE: $GLOBAL_MESSAGE"
+                echo "JOB_MESSAGE: $JOB_MESSAGE"
+
             - name: Aktuelles Verzeichnis ansehen
               run: pwd && ls -al
 
@@ -37,6 +46,11 @@ jobs:
         needs: say-hello
 
         steps:
+            - name: Ausgabe global und Job
+              run: |
+                echo "GLOBAL_MESSAGE: $GLOBAL_MESSAGE"
+                echo "JOB_MESSAGE: $JOB_MESSAGE"
+
             - name: Aktuelles Verzeichnis ansehen
               run: pwd && ls -al
 
