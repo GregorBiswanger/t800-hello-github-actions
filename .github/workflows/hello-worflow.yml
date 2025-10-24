@@ -27,13 +27,15 @@ jobs:
                 echo "JOB_MESSAGE: $JOB_MESSAGE"
 
             - name: Aktuelles Verzeichnis ansehen
-              run: pwd && ls -al
+              env:
+                STEP_MESSAGE: 'Message aus dem Step'
+              run: pwd && ls -al && echo $STEP_MESSAGE
 
             - name: Checkout der Dateien
               uses: actions/checkout@v4
               
             - name: Aktuelles Verzeichnis ansehen
-              run: pwd && ls -al
+              run: pwd && ls -al && echo $STEP_MESSAGE
 
             - name: Lade hello-world.js als Artifact hoch
               uses: actions/upload-artifact@v4
